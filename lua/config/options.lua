@@ -26,10 +26,16 @@ vim.opt.softtabstop = 4
 -- 文件编码识别顺序：UTF-8、GBK、GB18030（Keil/MDK 工程源码）。
 vim.opt.fileencodings = "ucs-bom,utf-8,gbk,gb18030,latin1"
 
--- RDP(X11) 桌面：wl-copy 缺少 Wayland runtime 时不可用，改用 xclip
+-- WSL：通过 win32yank 直接读写 Windows 剪贴板（不依赖 Wayland/RDP 剪贴板通道）。
+if vim.fn.has("wsl") == 1 and vim.fn.executable("win32yank.exe") == 1 then
+  vim.g.clipboard = "win32yank"
+end
+
+-- Linux X11（RDP 桌面等）：wl-copy 缺少 Wayland runtime 时改用 xclip
 --（xrdp 会把 X11 剪贴板同步到 Windows 剪贴板）。
 if
   vim.fn.has("win32") == 0
+  and vim.fn.has("wsl") == 0
   and vim.env.DISPLAY
   and not vim.env.DISPLAY:match("^:0")
   and vim.fn.executable("xclip") == 1
