@@ -26,6 +26,17 @@ vim.opt.softtabstop = 4
 -- 文件编码识别顺序：UTF-8、GBK、GB18030（Keil/MDK 工程源码）。
 vim.opt.fileencodings = "ucs-bom,utf-8,gbk,gb18030,latin1"
 
+-- RDP(X11) 桌面：wl-copy 缺少 Wayland runtime 时不可用，改用 xclip
+--（xrdp 会把 X11 剪贴板同步到 Windows 剪贴板）。
+if
+  vim.fn.has("win32") == 0
+  and vim.env.DISPLAY
+  and not vim.env.DISPLAY:match("^:0")
+  and vim.fn.executable("xclip") == 1
+then
+  vim.g.clipboard = "xclip"
+end
+
 -- 关闭同步输出（DECSET 2026）；远程桌面（xrdp）下可避免画面残影。
 pcall(function()
   vim.opt.termsync = false
