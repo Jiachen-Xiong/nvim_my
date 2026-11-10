@@ -23,7 +23,8 @@ AllowShortFunctionsOnASingleLine: None
 AllowShortIfStatementsOnASingleLine: WithoutElse
 AllowShortLoopsOnASingleLine: false
 
-PointerAlignment: Right
+# 指针星号靠类型（int* a）。
+PointerAlignment: Left
 DerivePointerAlignment: false
 
 # 运算符、宏、行尾注释按列对齐。
