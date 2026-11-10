@@ -1,0 +1,34 @@
+# C/C++ 全局 clang-format 风格（复制到 ~/.clang-format 或 %USERPROFILE%\.clang-format）。
+# 项目内的 .clang-format 优先。
+BasedOnStyle: LLVM
+IndentWidth: 4
+TabWidth: 4
+UseTab: Never
+ColumnLimit: 120
+ReflowComments: false
+
+# 函数/结构体：左大括号单独一行。
+# if/for/while：左大括号同行，包括 "} else {"。
+BreakBeforeBraces: Custom
+BraceWrapping:
+  AfterFunction: true
+  AfterStruct: true
+  AfterUnion: true
+  AfterEnum: true
+  AfterControlStatement: Never
+  BeforeElse: false
+  BeforeCatch: false
+
+AllowShortFunctionsOnASingleLine: None
+AllowShortIfStatementsOnASingleLine: WithoutElse
+AllowShortLoopsOnASingleLine: false
+
+PointerAlignment: Right
+DerivePointerAlignment: false
+
+# 运算符、宏、行尾注释按列对齐。
+AlignConsecutiveAssignments: true
+AlignConsecutiveMacros: AcrossEmptyLinesAndComments
+AlignOperands: true
+AlignTrailingComments: true
+BreakBeforeBinaryOperators: NonAssignment
