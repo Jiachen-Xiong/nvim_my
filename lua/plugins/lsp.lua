@@ -22,7 +22,8 @@ return {
             "clangd",
             "--background-index",
             "--clang-tidy",
-            "--header-insertion=iwyu",
+            -- 不自动插入 #include（补全和代码操作都不会加头文件）。
+            "--header-insertion=never",
             "--completion-style=detailed",
           },
           -- 工程根标记；.clang-format 不参与根目录判断（全局风格文件位于用户主目录）。
